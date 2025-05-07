@@ -4,7 +4,7 @@
 
 # NodeJS
 
-Existing Code
+**Existing Code**
 
 ```javascript
 import express from 'express';
@@ -44,7 +44,7 @@ app.get('/users/:id', async (req, res) => {
 app.listen(3000, () => console.log('Server running on port 3000'));
 ```
 
-Improved Solution
+**Improved Solution**
 
 ```javascript
 import express from 'express';
@@ -157,6 +157,46 @@ process.on('uncaughtException', (err) => {
   console.error('Uncaught exception:', err);
   process.exit(1);
 });
+```
+
+# Angular
+
+**Existing Code**
+```javascript
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Component({
+  selector: 'app-user-list',
+  template: `
+    <div *ngIf="error">{{ error }}</div>
+    <ul *ngIf="users">
+      <li *ngFor="let user of users">{{ user.name }}</li>
+    <ul>
+  `,
+})
+export class UserListComponent {
+  users: any[] = [];
+  error: string = '';
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.fetchUsers();
+  }
+
+  fetchUsers() {
+    this.http.get('http://localhost:3000/users')
+      .subscriber((response: any) => {
+        this.users = response;
+        this.error = error.message;
+      });
+  }
+}
+```
+
+**Improved Solution**
+```javascript
 ```
 
 ## Systems Architecture

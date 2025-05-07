@@ -197,6 +197,84 @@ export class UserListComponent {
 
 **Improved Solution**
 ```javascript
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Subscription, catchError, finalize, throwError } from 'rxjs';
+import { environment } from '../environments/environment';
+
+// Define a proper interface for User objects
+interface User {
+  id: number;
+  name: string;
+  // Add other properties as needed
+}
+
+@Component({
+  selector: 'app-user-list',
+  template: `
+    <div *ngIf="loading" class="loading">Loading users...</div>
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+    <ul *ngIf="users && users.length">
+      <li *ngFor="let user of users">{{ user.name }}</li>
+    </ul>
+    <div *ngIf="users && !users.length && !loading">No users found</div>
+  `,
+})
+export class UserListComponent implements OnInit, OnDestroy {
+  users: User[] = [];
+  error: string = '';
+  loading: boolean = false;
+  private subscription: Subscription | null = null;
+  
+  constructor(private http: HttpClient) {}
+  
+  ngOnInit(): void {
+    this.fetchUsers();
+  }
+  
+  ngOnDestroy(): void {
+    // Clean up subscription to prevent memory leaks
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+  
+  fetchUsers(): void {
+    this.loading = true;
+    this.error = '';
+    
+    this.subscription = this.http
+      .get<User[]>(`${environment.apiUrl}/users`)
+      .pipe(
+        catchError(this.handleError),
+        finalize(() => {
+          this.loading = false;
+        })
+      )
+      .subscribe({
+        next: (response: User[]) => {
+          this.users = response;
+        },
+        error: (error: string) => {
+          this.error = error;
+        }
+      });
+  }
+  
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = '';
+    
+    if (error.error instanceof ErrorEvent) {
+      // Client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    
+    return throwError(() => errorMessage);
+  }
+}
 ```
 
 ## Systems Architecture

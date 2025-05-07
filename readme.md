@@ -172,7 +172,7 @@ import { HttpClient } from '@angular/common/http';
     <div *ngIf="error">{{ error }}</div>
     <ul *ngIf="users">
       <li *ngFor="let user of users">{{ user.name }}</li>
-    <ul>
+    </ul>
   `,
 })
 export class UserListComponent {
@@ -187,7 +187,7 @@ export class UserListComponent {
 
   fetchUsers() {
     this.http.get('http://localhost:3000/users')
-      .subscriber((response: any) => {
+      .subscribe((response: any) => {
         this.users = response;
         this.error = error.message;
       });

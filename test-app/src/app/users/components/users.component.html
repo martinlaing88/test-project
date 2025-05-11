@@ -69,7 +69,7 @@
       <tr *ngFor="let user of users" class="user-item">
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
-        <td class="role"><span>{{ user.role }}</span></td>
+        <td class="role"><span *ngIf="user.role">{{ user.role }}</span></td>
         <td class="created-date">{{ user.createdAt | date:'mediumDate' }}</td>
       </tr>
     </tbody>

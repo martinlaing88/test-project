@@ -1,6 +1,6 @@
 # Test Project
 
-*Node version:* v18.20.7
+**Node version:** v18.20.7
 
 ### NodeJS API
 

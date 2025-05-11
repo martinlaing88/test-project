@@ -21,7 +21,7 @@ npm run test
 
 ### Angular Component
 
-Before running frontend ensure backend is running and register a user to get a JWT token - this needs set in localstorage with the key of token, as for simplicity there is no frontend login component implemented.
+Before running the frontend ensure backend is running and register a user to get a JWT token - this needs set in localstorage with the key of token, as for simplicity there is no frontend login component implemented.
 
 **Setup**
 ```bash
@@ -197,7 +197,7 @@ process.on('uncaughtException', (err) => {
 
 - **Removed Performance Bottleneck**
   - Eliminated the unnecessary loop that was calculating a sum of 1 billion numbers.
-  - This alone will give you a massive performance improvement, as this operation was completely unnecessary and would cause each request to take several seconds.
+  - This alone will give a massive performance improvement, as this operation was completely unnecessary and would cause each request to take several seconds.
 - **Efficient Database Querying**
   - Changed from find().toArray() + JavaScript filtering to using MongoDB's findOne() method with a direct query.
   - This optimizes both performance and memory usage by returning only the specific user instead of all users.
@@ -207,17 +207,17 @@ process.on('uncaughtException', (err) => {
   - Included graceful shutdown handling to properly close the connection.
 - **Enhanced Error Handling**
   - Added a dedicated error handling middleware for consistent error responses.
-  - Implemented proper HTTP status codes (404 for user not found, etc.).
+  - Implemented HTTP status codes (404 for user not found, etc.).
   - Added stack traces in non-production environments for easier debugging.
 - **Input Validation**
   - Added request validation using express-validator.
-  - Implemented proper error responses for invalid inputs.
+  - Implemented error responses for invalid inputs.
 - **Code Organization**
   - Separated database connection logic for better maintainability.
   - Used environment variables for configuration.
 - **Security Best Practices**
   - Avoided exposing stack traces in production.
-  - Added proper error handling for uncaught exceptions.
+  - Added error handling for uncaught exceptions.
 
 **Additional Recommendations**
 
@@ -273,7 +273,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Subscription, catchError, finalize, throwError } from 'rxjs';
 import { environment } from '../environments/environment';
 
-// Define a proper interface for User objects
+// Define an interface for User objects
 interface User {
   id: number;
   name: string;
@@ -350,25 +350,25 @@ export class UserListComponent implements OnInit, OnDestroy {
 
 - **Lifecycle Hook Implementation**
   - Issue: The ngOnInit() method is not properly implemented - it's missing the interface implementation.
-  - Suggestion: Implement the OnInit interface from @angular/core.
+  - Solution: Implemented the OnInit interface from @angular/core.
 - **Error Handling**
   - Issue: The error handling in the subscribe method is incorrect. The error parameter is not defined in the callback.
-  - Suggestion: Use the proper error callback in the subscribe method.
+  - Solution: Implemented error callback in the subscribe method.
 - **Type Safety**
   - Issue: Using any[] for users and generic any response type reduces type safety.
-  - Suggestion: Create a proper interface for the user object and use it for typing.
+  - Solution: Create an interface for the user object and use it for typing.
 - **Subscription Management**
   - Issue: No management of the HTTP subscription, which can lead to memory leaks.
-  - Suggestion: Store the subscription and unsubscribe in ngOnDestroy().
+  - Solution: Store the subscription and unsubscribe in ngOnDestroy().
 - **HTTP Error Strategy**
-  - Issue: Direct assignment of error message without proper error handling strategy.
-  - Suggestion: Implement a more robust error handling approach.
+  - Issue: Direct assignment of error message without error handling strategy.
+  - Solution: Implement a more robust error handling approach.
 - **Missing HTTP Error Handling**
   - Issue: No handling for network errors or server errors.
-  - Suggestion: Add proper error handling with status codes and user-friendly messages.
+  - Solution: Add error handling with status codes and user-friendly messages.
 - **Hard-coded API URL**
   - Issue: The API URL is hard-coded in the component.
-  - Suggestion: Use environment configuration or a service for API URLs.
+  - Solution: Use environment configuration or a service for API URLs.
 
 ## Systems Architecture
 
@@ -399,14 +399,14 @@ export class UserListComponent implements OnInit, OnDestroy {
 ## Scalability Improvements
 
 - **Load Balancing:**
-  - Replace single Node.js server with a proper load balancer (e.g., NGINX, AWS ELB) with multiple backend instances.
+  - Replace single Node.js server with a load balancer (e.g., NGINX, AWS ELB) with multiple backend instances.
+
 - **Database Scalability:**
   - Add read replicas for MySQL to handle high-read traffic
   - Consider implementing database sharding for large datasets
   - Evaluate connection pooling to manage database connections efficiently
 
 - **Containerization:**
-  - Move from direct Node.js deployment to Docker containers
   - Consider Kubernetes for orchestration to enable auto-scaling
   
 - **Background Tasks:**
@@ -425,7 +425,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   - Add compression for API responses
 
 - **Database Performance:**
-  - Add proper indexing strategy for MySQL
+  - Add indexing strategy for MySQL
   - Consider adding NoSQL solutions for specific use cases requiring high throughput
 
 ## Security Enhancements
@@ -437,13 +437,13 @@ export class UserListComponent implements OnInit, OnDestroy {
 
 - **API Gateway Security:**
   - Implement rate limiting to prevent abuse
-  - Add proper request validation and sanitization
+  - Add request validation and sanitization
   - Fix CORS configuration to follow principle of least privilege
 
 - **Infrastructure Security:**
-  - Implement proper network segmentation
+  - Implement network segmentation
   - Add intrusion detection systems
-  - Configure proper IAM roles and policies for cloud resources
+  - Configure IAM roles and policies for cloud resources
   - Enable encryption at rest and in transit
 
 ## Maintainability Improvements
@@ -454,15 +454,15 @@ export class UserListComponent implements OnInit, OnDestroy {
   - Add automated testing in the pipeline
 
 - **Monitoring & Observability:**
-  - Implement structured logging (Winston, Bunyan)
+  - Implement structured logging (Winston)
   - Add application performance monitoring (New Relic, Datadog)
-  - Set up centralized logging with ELK stack or similar
+  - Set up centralized logging, tracing and metrics with the Grafana stack or similar (OTel, Loki, Grafana, Prometheus etc..)
   - Implement health checks and alerts
 
 - **Error Handling:**
   - Create standardized error response format
   - Implement global error handling middleware
-  - Add proper logging levels and correlation IDs for request tracing
+  - Add logging levels and correlation IDs for request tracing
 
 - **Documentation:**
   - Add API documentation with Swagger/OpenAPI

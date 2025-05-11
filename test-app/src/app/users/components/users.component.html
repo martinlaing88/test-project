@@ -1,0 +1,77 @@
+<div class="users-container">
+  <h2>{{ title }}</h2>
+  
+  <!-- Filter Controls -->
+  <div class="controls" *ngIf="!loading && !error">
+    <div class="filter-container">
+      <input 
+        type="text" 
+        class="filter-input" 
+        placeholder="Search users..." 
+        [value]="filterText"
+        (input)="onFilterChange($event)">
+      <button 
+        *ngIf="filterText" 
+        class="clear-button" 
+        (click)="clearFilter()">
+        ✕
+      </button>
+    </div>
+    
+    <div class="sort-container">
+      <span>Sort by:</span>
+      <div class="sort-options">
+        <div 
+          *ngFor="let option of sortOptions" 
+          class="sort-option"
+          [class.active]="currentSort.field === option.field"
+          (click)="sortUsers(option.field)" tabindex="0">
+          {{ option.displayName }} 
+          <span class="sort-icon" *ngIf="currentSort.field === option.field">
+            {{ currentSort.direction === 'asc' ? '↑' : '↓' }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading">
+    Loading users...
+  </div>
+  
+  <!-- Error State -->
+  <div *ngIf="error" class="error-container">
+    <p class="error-message">{{ error }}</p>
+    <button (click)="retry()">Try Again</button>
+  </div>
+  
+  <!-- Empty State with Filter -->
+  <div *ngIf="!loading && !error && users.length === 0 && filterText" class="no-users">
+    No users found matching "{{ filterText }}".
+    <button class="clear-filter-button" (click)="clearFilter()">Clear filter</button>
+  </div>
+  
+  <!-- Empty State without Filter -->
+  <div *ngIf="!loading && !error && users.length === 0 && !filterText" class="no-users">
+    No users found.
+  </div>
+  
+  <!-- Users List -->
+  <table *ngIf="!loading && !error && users.length > 0" class="users-list">
+    <thead>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Created At</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users" class="user-item">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td class="role"><span>{{ user.role }}</span></td>
+        <td class="created-date">{{ user.createdAt | date:'mediumDate' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

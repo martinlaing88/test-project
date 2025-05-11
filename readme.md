@@ -8,6 +8,8 @@ npm install
 npm run dev
 ```
 
+API should be running at http://localhost:3000/
+
 **Tests**
 ```bash
 npm run test
@@ -18,12 +20,13 @@ npm run test
 **Setup**
 ```bash
 npm install
-npm run dev
+ng serve
 ```
+Application should be running at http://localhost:4200/
 
 **Tests**
 ```bash
-npm run test
+ng test
 ```
 
 ## Debugging & Optimisation

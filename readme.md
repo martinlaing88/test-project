@@ -9,6 +9,7 @@ npm run dev
 ```
 
 API should be running at http://localhost:3000/
+Example postman collection can be found in the **Test Node API.postman_collection.json file**.
 
 **Tests**
 ```bash
@@ -16,6 +17,8 @@ npm run test
 ```
 
 ### Angular Component
+
+Before running frontend ensure backend is running and register a user to get a JWT token - this needs set in localstorage with the key of token, as for simplicity there is no frontend login component implemented.
 
 **Setup**
 ```bash

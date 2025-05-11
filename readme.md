@@ -4,7 +4,7 @@
 
 # NodeJS
 
-**Existing Code**
+** Existing Code **
 
 ```javascript
 import express from 'express';
@@ -44,7 +44,7 @@ app.get('/users/:id', async (req, res) => {
 app.listen(3000, () => console.log('Server running on port 3000'));
 ```
 
-**Improved Solution**
+** Improved Solution **
 
 ```javascript
 import express from 'express';
@@ -196,7 +196,7 @@ Additional Recommendations
 
 # Angular
 
-**Existing Code**
+** Existing Code **
 ```javascript
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -230,7 +230,7 @@ export class UserListComponent {
 }
 ```
 
-**Improved Solution**
+** Improved Solution **
 ```javascript
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -337,30 +337,30 @@ export class UserListComponent implements OnInit, OnDestroy {
 ## Systems Architecture
 
 ### Frontend
-- **Framework:** Angular
-- **API Communication:** HTTP requests
-- **Authentication:** Express sessions
+- ** Framework: ** Angular
+- ** API Communication: ** HTTP requests
+- ** Authentication: ** Express sessions
 
 ### Backend
-- **Authentication:** Express session
-- **Database:** MySQL
-- **Error Handling:** Minimal logging, no structured error responses
-- **Background Tasks:** Blocking synchronous tasks in API requests
+- ** Authentication: ** Express session
+- ** Database: ** MySQL
+- ** Error Handling: ** Minimal logging, no structured error responses
+- ** Background Tasks: ** Blocking synchronous tasks in API requests
 
 ### API Gateway
-- **Rate Limiting:** None - API is exposed with no request throttling
-- **Load Balancing:** Single Node.js server without redundancy
-- **Security Measures:** CORS misconfigured, no request validation
+- ** Rate Limiting: ** None - API is exposed with no request throttling
+- ** Load Balancing: ** Single Node.js server without redundancy
+- ** Security Measures: ** CORS misconfigured, no request validation
 
 ### Deployment & Infrastructure
-- **Containerization:** Direct Node.js deployment
-- **CI/CD:** Manual server updates
-- **Cloud Provider:** VPS Instance
-- **Storage:** S3
+- ** Containerization: ** Direct Node.js deployment
+- ** CI/CD: ** Manual server updates
+- ** Cloud Provider: ** VPS Instance
+- ** Storage: ** S3
 
-##Improvements
+## Improvements
 
-##Scalability Improvements
+## Scalability Improvements
 
 - Load Balancing:
   Replace single Node.js server with a proper load balancer (e.g., NGINX, AWS ELB) with multiple backend instances.
@@ -376,7 +376,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 - Background Tasks:
   Migrate from blocking synchronous tasks to message queues (RabbitMQ, SQS)
 
-##Performance Improvements
+## Performance Improvements
 
 - Caching Strategy:
   Implement Redis/Memcached for caching frequent database queries
@@ -392,7 +392,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   Add proper indexing strategy for MySQL
   Consider adding NoSQL solutions for specific use cases requiring high throughput
 
-##Security Enhancements
+## Security Enhancements
 
 - Authentication:
   Replace Express sessions with JWT tokens for stateless authentication
@@ -410,7 +410,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   Configure proper IAM roles and policies for cloud resources
   Enable encryption at rest and in transit
 
-##Maintainability Improvements
+## Maintainability Improvements
 
 - CI/CD Pipeline:
   Replace manual updates with automated CI/CD (GitHub Actions, Jenkins, etc.)
@@ -433,14 +433,14 @@ export class UserListComponent implements OnInit, OnDestroy {
   Implement automated documentation generation
   Create runbooks for common operational tasks
 
-##Cloud & Infrastructure Recommendations
+## Cloud & Infrastructure Recommendations
 
 - Cloud Migration:
   Move from VPS to managed cloud services (AWS, Azure, GCP)
   Utilize auto-scaling groups for dynamic capacity
   Implement infrastructure as code (Terraform, CloudFormation)
 
-##Disaster Recovery:
+## Disaster Recovery:
 
 Implement regular database backups
 Create multi-region deployment strategy

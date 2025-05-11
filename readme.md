@@ -1,5 +1,31 @@
 # Test Project
 
+### NodeJS API
+
+**Setup**
+```bash
+npm install
+npm run dev
+```
+
+**Tests**
+```bash
+npm run test
+```
+
+### Angular Component
+
+**Setup**
+```bash
+npm install
+npm run dev
+```
+
+**Tests**
+```bash
+npm run test
+```
+
 ## Debugging & Optimisation
 
 # NodeJS

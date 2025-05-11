@@ -4,7 +4,7 @@
 
 # NodeJS
 
-** Existing Code **
+**Existing Code**
 
 ```javascript
 import express from 'express';
@@ -44,7 +44,7 @@ app.get('/users/:id', async (req, res) => {
 app.listen(3000, () => console.log('Server running on port 3000'));
 ```
 
-** Improved Solution **
+**Improved Solution**
 
 ```javascript
 import express from 'express';
@@ -196,7 +196,7 @@ Additional Recommendations
 
 # Angular
 
-** Existing Code **
+**Existing Code**
 ```javascript
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -230,7 +230,7 @@ export class UserListComponent {
 }
 ```
 
-** Improved Solution **
+**Improved Solution**
 ```javascript
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -337,26 +337,26 @@ export class UserListComponent implements OnInit, OnDestroy {
 ## Systems Architecture
 
 ### Frontend
-- ** Framework: ** Angular
-- ** API Communication: ** HTTP requests
-- ** Authentication: ** Express sessions
+- **Framework:** Angular
+- **API Communication:** HTTP requests
+- **Authentication:** Express sessions
 
 ### Backend
-- ** Authentication: ** Express session
-- ** Database: ** MySQL
-- ** Error Handling: ** Minimal logging, no structured error responses
-- ** Background Tasks: ** Blocking synchronous tasks in API requests
+- **Authentication:** Express session
+- **Database:** MySQL
+- **Error Handling:** Minimal logging, no structured error responses
+- **Background Tasks:** Blocking synchronous tasks in API requests
 
 ### API Gateway
-- ** Rate Limiting: ** None - API is exposed with no request throttling
-- ** Load Balancing: ** Single Node.js server without redundancy
-- ** Security Measures: ** CORS misconfigured, no request validation
+- **Rate Limiting:** None - API is exposed with no request throttling
+- **Load Balancing:** Single Node.js server without redundancy
+- **Security Measures:** CORS misconfigured, no request validation
 
 ### Deployment & Infrastructure
-- ** Containerization: ** Direct Node.js deployment
-- ** CI/CD: ** Manual server updates
-- ** Cloud Provider: ** VPS Instance
-- ** Storage: ** S3
+- **Containerization:** Direct Node.js deployment
+- **CI/CD:** Manual server updates
+- **Cloud Provider:** VPS Instance
+- **Storage:** S3
 
 ## Improvements
 

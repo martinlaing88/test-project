@@ -4,6 +4,7 @@
 
 **Setup**
 ```bash
+cd backend
 npm install
 npm run dev
 ```
@@ -22,6 +23,7 @@ Before running frontend ensure backend is running and register a user to get a J
 
 **Setup**
 ```bash
+cd test-app
 npm install
 ng serve
 ```
